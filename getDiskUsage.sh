@@ -13,7 +13,7 @@ echo -e "Servername \t\t Filesystem \t Size Used Avail Use% Mounted on" > diskRe
 for server in $servers
   do
   # login
-  kernel=`ssh user@${server} "df -h | grep -w "/""`
+  kernel=`ssh user@${server} "df -h | grep -w "/" | awk '{print $1 "\t" $5}'"`
   # print out results
   echo -e "$server \t\t $kernel" >> diskReport"$date".txt 
 done
